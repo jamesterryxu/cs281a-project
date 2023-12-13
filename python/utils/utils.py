@@ -9,6 +9,24 @@ import datetime
 import os
 
 
+def eda_raw_data(directory_to_file,name_of_file):
+    ''' Function to open .h5 file
+    Args:
+        directory_to_file: full directory to file (string)
+        name_of_file: .h5 file that you want to examine (string)
+    Returns:
+    
+    Raises:
+    
+    '''
+    file = h5py.File(directory_to_file+'/'+name_of_file+'.h5', 'r')
+    # Read the dataset
+    raw_data = file['/Acquisition/Raw[0]/RawData']
+    raw_data = np.double(raw_data) # Convert to double
+
+
+    return raw_data
+
 def raw_to_phase(directory_to_file,name_of_file):
     ''' Function to reformat the data fields in the h5 file (Doesn't decimate or unwrap)
     Args:
